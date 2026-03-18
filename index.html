@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ΠαΠα | Χειμερινοί Κολυμβητές</title>
+    <meta
+      name="description"
+      content="ΠαΠα swimming adventures. Μια παρέα χειμερινών κολυμβητών που βουτά όλο τον χρόνο, με σημείο συνάντησης την Παντάνασσα και τον Καρτερό."
+    />
+    <meta name="theme-color" content="#0a3045" />
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --deep: #0a3045;
+        --sea: #0e5878;
+        --foam: #f6fbff;
+        --mist: #dff4ff;
+        --sun: #ffc96c;
+        --accent: #7ae6ff;
+        --ink: #102330;
+        --muted: #4d6978;
+        --line: rgba(16, 35, 48, 0.1);
+        --shadow: 0 28px 70px rgba(7, 33, 48, 0.18);
+        --shadow-soft: 0 16px 34px rgba(7, 33, 48, 0.1);
+        --radius-xl: 34px;
+        --radius-lg: 26px;
+        --radius-md: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        position: relative;
+        isolation: isolate;
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Rubik", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 82% 12%, rgba(255, 201, 108, 0.65), transparent 16%),
+          radial-gradient(circle at 18% 14%, rgba(255, 255, 255, 0.48), transparent 18%),
+          linear-gradient(
+            180deg,
+            #a8e4ff 0%,
+            #cdf1ff 15%,
+            #42b4df 15%,
+            #1b8fbc 40%,
+            #0e6f98 56%,
+            #36abd1 66%,
+            #f2d8ae 66%,
+            #e8c38f 84%,
+            #f5ead8 100%
+          );
+        overflow-x: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      body::before {
+        background:
+          radial-gradient(circle at 14% 16%, rgba(255, 255, 255, 0.82) 0 20px, transparent 21px),
+          radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.7) 0 28px, transparent 29px),
+          radial-gradient(circle at 24% 16%, rgba(255, 255, 255, 0.8) 0 18px, transparent 19px),
+          radial-gradient(circle at 72% 20%, rgba(255, 255, 255, 0.78) 0 18px, transparent 19px),
+          radial-gradient(circle at 76% 17%, rgba(255, 255, 255, 0.72) 0 28px, transparent 29px),
+          radial-gradient(circle at 81% 20%, rgba(255, 255, 255, 0.76) 0 17px, transparent 18px),
+          radial-gradient(circle at 22% 54%, rgba(255, 255, 255, 0.18) 0 2px, transparent 2px 16px),
+          radial-gradient(circle at 38% 58%, rgba(255, 255, 255, 0.16) 0 2px, transparent 2px 18px),
+          radial-gradient(circle at 68% 52%, rgba(255, 255, 255, 0.18) 0 2px, transparent 2px 16px),
+          radial-gradient(circle at 82% 60%, rgba(255, 255, 255, 0.14) 0 2px, transparent 2px 18px);
+        opacity: 0.95;
+      }
+
+      body::after {
+        inset: 0;
+        background:
+          radial-gradient(120% 12% at 50% 66%, rgba(255, 255, 255, 0.92) 0 38%, transparent 39%),
+          radial-gradient(140% 12% at 52% 68%, rgba(255, 255, 255, 0.55) 0 34%, transparent 35%),
+          radial-gradient(160% 16% at 46% 64%, rgba(255, 255, 255, 0.28) 0 28%, transparent 29%);
+        opacity: 0.9;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 22px 14px 34px;
+      }
+
+      .shell {
+        position: relative;
+        width: min(980px, 100%);
+      }
+
+      .sticker {
+        position: absolute;
+        z-index: 3;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 2px solid rgba(16, 35, 48, 0.14);
+        box-shadow: var(--shadow-soft);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .sticker-a {
+        top: -12px;
+        left: 18px;
+        color: var(--deep);
+        background: var(--sun);
+        transform: rotate(-8deg);
+      }
+
+      .sticker-b {
+        top: 22px;
+        right: 14px;
+        color: var(--deep);
+        background: #ffffff;
+        transform: rotate(10deg);
+      }
+
+      .sticker-c {
+        bottom: -12px;
+        right: 42px;
+        color: #ffffff;
+        background: var(--deep);
+        border-color: rgba(255, 255, 255, 0.16);
+        transform: rotate(-7deg);
+      }
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-xl);
+        background:
+          linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(239, 250, 255, 0.94)),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.08));
+        border: 1px solid rgba(255, 255, 255, 0.52);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(22px);
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: auto -8% -24% 30%;
+        height: 300px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at center, rgba(122, 230, 255, 0.3), transparent 60%);
+        transform: rotate(-8deg);
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: auto -6% -10% -6%;
+        height: 180px;
+        background:
+          radial-gradient(120% 120% at 50% 100%, rgba(14, 88, 120, 0.2), transparent 62%);
+      }
+
+      .content {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: 22px;
+        align-items: center;
+        padding: 28px 26px 30px;
+      }
+
+      .logo-panel {
+        position: relative;
+        padding: 18px;
+        border-radius: 32px;
+        background:
+          linear-gradient(160deg, rgba(9, 43, 61, 0.96), rgba(8, 55, 79, 0.94)),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0));
+        box-shadow: 0 20px 40px rgba(9, 43, 61, 0.18);
+      }
+
+      .logo-panel::before {
+        content: "";
+        position: absolute;
+        inset: 18px;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        pointer-events: none;
+      }
+
+      .logo-wrap {
+        overflow: hidden;
+        border-radius: 26px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+
+      .logo-wrap img {
+        width: 100%;
+        height: auto;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 14px;
+        color: var(--sea);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 30px;
+        height: 2px;
+        border-radius: 999px;
+        background: currentColor;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 12ch;
+        font-size: clamp(2.5rem, 7vw, 4.6rem);
+        line-height: 0.92;
+        letter-spacing: -0.05em;
+      }
+
+      .lead {
+        max-width: 36rem;
+        margin: 16px 0 0;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .chip {
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.74);
+        border: 1px solid var(--line);
+        box-shadow: 0 8px 20px rgba(16, 35, 48, 0.06);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 56px;
+        padding: 0 18px;
+        border-radius: 18px;
+        border: 1px solid transparent;
+        font-size: 14px;
+        font-weight: 800;
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease,
+          background-color 180ms ease;
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        transform: translateY(-2px);
+      }
+
+      .button-primary {
+        color: var(--foam);
+        background: linear-gradient(135deg, var(--deep), #1273a0);
+        box-shadow: 0 16px 26px rgba(10, 48, 69, 0.18);
+      }
+
+      .button-secondary {
+        color: var(--deep);
+        background: rgba(255, 255, 255, 0.74);
+        border-color: var(--line);
+      }
+
+      .button svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+
+      .speech {
+        margin-top: 22px;
+        max-width: 28rem;
+        padding: 16px 18px;
+        border-radius: 22px 22px 22px 8px;
+        background: #ffffff;
+        border: 1px solid rgba(16, 35, 48, 0.08);
+        box-shadow: 0 14px 28px rgba(16, 35, 48, 0.08);
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.6;
+      }
+
+      .speech strong {
+        color: var(--sea);
+      }
+
+      .footer-note {
+        margin-top: 14px;
+        color: rgba(16, 35, 48, 0.62);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      @media (min-width: 860px) {
+        .content {
+          grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+          padding: 34px 34px 36px;
+        }
+      }
+
+      @media (max-width: 859px) {
+        .shell {
+          padding-top: 28px;
+        }
+
+        .sticker-a {
+          top: 0;
+          left: 8px;
+        }
+
+        .sticker-b {
+          top: 10px;
+          right: 8px;
+        }
+
+        .sticker-c {
+          right: 18px;
+        }
+      }
+
+      @media (max-width: 580px) {
+        .page {
+          padding: 16px 10px 28px;
+        }
+
+        .card {
+          border-radius: 28px;
+        }
+
+        .content {
+          gap: 18px;
+          padding: 18px 16px 22px;
+        }
+
+        .logo-panel {
+          padding: 12px;
+          border-radius: 24px;
+        }
+
+        h1 {
+          max-width: none;
+          font-size: clamp(2.05rem, 11vw, 3.2rem);
+        }
+
+        .lead,
+        .speech,
+        .footer-note {
+          overflow-wrap: anywhere;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .sticker {
+          min-height: 42px;
+          padding: 8px 12px;
+          font-size: 10px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="shell">
+        <div class="sticker sticker-a">χειμώνας = βουτιά</div>
+        <div class="sticker sticker-b">salt club</div>
+        <div class="sticker sticker-c">Παντάνασσα • Καρτερός</div>
+
+        <section class="card" aria-labelledby="page-title">
+          <div class="content">
+            <div class="logo-panel">
+              <div class="logo-wrap">
+                <img src="logo.png" alt="ΠαΠα swimming adventures logo" />
+              </div>
+            </div>
+
+            <div>
+              <p class="eyebrow">Χειμερινοί Κολυμβητές</p>
+              <h1 id="page-title">Μια παρέα που δεν περιμένει το καλοκαίρι.</h1>
+
+              <p class="lead">
+                Το <strong>ΠαΠα</strong> είναι μια όμορφη, θαλασσινή κοινότητα φίλων που κολυμπάει όλο τον χρόνο. Αν σε
+                τραβάει το κρύο νερό, η αλμύρα και η παρέα, εδώ είναι το σημείο εκκίνησης.
+              </p>
+
+              <div class="chips" aria-label="Βασικά στοιχεία">
+                <span class="chip">Όλο τον χρόνο</span>
+                <span class="chip">Παντάνασσα</span>
+                <span class="chip">Καρτερός</span>
+                <span class="chip">Instagram παρέα</span>
+              </div>
+
+              <div class="actions">
+                <a
+                  class="button button-primary"
+                  href="https://www.instagram.com/parasyropantanassa/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2H7Zm10.35 1.2a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2.2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z"
+                    />
+                  </svg>
+                  Ακολούθησέ μας στο Instagram
+                </a>
+
+                <a
+                  class="button button-secondary"
+                  href="https://www.instagram.com/parasyropantanassa/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4 5.75A1.75 1.75 0 0 1 5.75 4h12.5A1.75 1.75 0 0 1 20 5.75v12.5A1.75 1.75 0 0 1 18.25 20H5.75A1.75 1.75 0 0 1 4 18.25V5.75Zm1.75-.25a.25.25 0 0 0-.25.25v.64l6.5 4.65 6.5-4.65v-.64a.25.25 0 0 0-.25-.25H5.75Zm12.75 2.72-5.77 4.12a1.25 1.25 0 0 1-1.46 0L5.5 8.22v10.03c0 .14.11.25.25.25h12.5a.25.25 0 0 0 .25-.25V8.22Z"
+                    />
+                  </svg>
+                  Στείλε μας μήνυμα
+                </a>
+              </div>
+
+              <div class="speech">
+                <strong>Μικρό note:</strong> βρίσκεις την παρέα στην παραλία της Παντάνασσας ή στον Καρτερό. Για
+                πληροφορίες, updates και βουτιές, το Instagram είναι το βασικό μας στέκι.
+              </div>
+
+              <p class="footer-note"><strong>@parasyropantanassa</strong> • ακολούθησέ μας για βουτιές, νέα και αλμυρές ιστορίες.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
